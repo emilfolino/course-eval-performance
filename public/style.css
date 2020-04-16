@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+}
+
+body {
+    font-size: 1em;
+    font-family: sans-serif;
+}
+
+@media (min-width: 64em) {
+  html {
+    font-size: 112.5%;
+  }
+}
+
+h1,
+h2 {
+    font-weight: normal;
+}
+
+.container {
+    width: 64em;
+    margin: 2em auto;
+}
+
+.search-container,
+.export-container {
+    margin-top: 4em;
+}
+
+table {
+    margin-top: 2em;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    font-weight: normal;
+    border-bottom: 1px solid #ccc;
+    padding: 0.2em 0.6em;
+}
+
+td {
+    padding: 0.2em 0.6em;
+}
+
+.high {
+    background-color: green;
+    color: white;
+}
+
+.low {
+    background-color: red;
+    color: white;
+}
