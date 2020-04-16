@@ -48,19 +48,32 @@ function renderTable(courses, container) {
 
     table.appendChild(thead);
 
+    let currentCode = "";
+    let color = false;
+
     courses.forEach(function(c) {
+        if (currentCode != c.course_code) {
+            color = !color;
+            currentCode = c.course_code;
+        }
+
+
         let tr = document.createElement("tr");
+
+        if (color) {
+            tr.className = "row-background";
+        }
 
         let performanceClass = c.performance_rate > 0.7 ?
                                 "high" :
                                 c.performance_rate < 0.5 ?
-                                "low": "";
+                                "low": "normal";
         let indexClass = c.eval_index > 3.3 ?
                                 "high" :
                                 c.eval_index < 2.5 ?
-                                "low": "";
+                                "low": "normal";
 
-        tr.innerHTML = `<td>${c.year}</td><td>${c.study_period}</td><td>${c.course_code}</td><td>${c.name}</td><td class="${performanceClass}">${c.performance_rate}</td><td class="${indexClass}">${c.eval_index}</td>`;
+        tr.innerHTML = `<td>${c.year}</td><td>${c.study_period}</td><td>${c.course_code}</td><td>${c.name}</td><td class="${performanceClass}">${Math.round(c.performance_rate * 100)}%</td><td class="${indexClass}">${c.eval_index}</td>`;
 
         tbody.appendChild(tr);
     });

@@ -51,12 +51,21 @@ td {
     padding: 0.2em 0.6em;
 }
 
+.normal {
+    background-color: white;
+}
+
+
 .high {
     background-color: green;
     color: white;
 }
 
 .low {
-    background-color: red;
+    background-color: #cc0000;
     color: white;
+}
+
+.row-background {
+    background-color: #ececec;
 }
