@@ -1,3 +1,4 @@
 node_modules/
 
 db/seed.sql
+db/courses.sqlite
