@@ -1,24 +1,28 @@
-(function IIFE() {
-    let searchInput = document.getElementById('search');
-    let searchButton = document.getElementById('do-search');
-    let searchResults = document.getElementById('search-results');
+let searchInput = document.getElementById('search');
+let searchButton = document.getElementById('do-search');
+let factor = document.getElementById('factor');
+let searchResults = document.getElementById('search-results');
 
+(function IIFE() {
     searchButton.addEventListener("click", function() {
         let query = searchInput.value;
         fetchSearch(query, searchResults);
     });
 
-    searchInput.addEventListener("keyup", function(event) {
-        if (event.isComposing || event.keyCode === 229) {
-            return;
-        }
-
-        if (event.keyCode === 13) {
-            let query = searchInput.value;
-            fetchSearch(query, searchResults);
-        }
-    });
+    factor.addEventListener("keyup", keyBoardInput);
+    searchInput.addEventListener("keyup", keyBoardInput);
 })();
+
+function keyBoardInput(event) {
+    if (event.isComposing || event.keyCode === 229) {
+        return;
+    }
+
+    if (event.keyCode === 13) {
+        let query = searchInput.value;
+        fetchSearch(query, searchResults);
+    }
+}
 
 function fetchSearch(query, container) {
     fetch(`/search/${query}`)
@@ -56,6 +60,9 @@ function renderTable(courses, container) {
             color = !color;
             currentCode = c.course_code;
         }
+
+        let factorValue = factor.value || 0;
+        c.performance_rate = c.performance_rate + (1 - c.performance_rate) * (parseFloat(factorValue) / 100.0);
 
 
         let tr = document.createElement("tr");
